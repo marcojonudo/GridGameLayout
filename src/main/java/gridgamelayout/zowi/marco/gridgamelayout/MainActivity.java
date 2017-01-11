@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,11 +21,13 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private int[][] coordinates = new int[10][2];
+    private MainActivity context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_grid_3x3);
+        this.context = this;
 
         GridLayout gameGrid = (GridLayout) findViewById(R.id.game_grid);
 
@@ -52,10 +56,38 @@ public class MainActivity extends AppCompatActivity {
                     gameGrid.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 }
             });
+
+        Button controls = (Button) findViewById(R.id.controls);
+        controls.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                float x = event.getX();
+                float y = event.getY();
+                float rightCorner = v.getWidth();
+
+                if (x>y) {
+                    if (y < (rightCorner-x)) {
+                        Toast.makeText(context, "Zona 1", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(context, "Zona 2", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {
+                    if (y > (rightCorner-x)) {
+                        Toast.makeText(context, "Zona 3", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(context, "Zona 4", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                return true;
+            }
+        });
     }
 
     private void insertZowi() {
-        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.game_grid_3x3);
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.game_grid_3x3);
 
         ImageView zowiImage = new ImageView(this);
         zowiImage.setImageResource(R.drawable.zowi_pointer);
@@ -75,7 +107,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        relativeLayout.addView(zowiImage);
+        linearLayout.addView(zowiImage);
+    }
+
+    public void moveZowi(View v) {
+        Toast.makeText(this, "Hello", Toast.LENGTH_SHORT).show();
     }
 
 }
