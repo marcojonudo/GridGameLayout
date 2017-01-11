@@ -61,26 +61,34 @@ public class MainActivity extends AppCompatActivity {
         controls.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                float x = event.getX();
-                float y = event.getY();
-                float rightCorner = v.getWidth();
 
-                if (x>y) {
-                    if (y < (rightCorner-x)) {
-                        Toast.makeText(context, "Zona 1", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        Toast.makeText(context, "Zona 2", Toast.LENGTH_SHORT).show();
-                    }
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        float x = event.getX();
+                        float y = event.getY();
+                        float rightCorner = v.getWidth();
+
+                        if (x>y) {
+                            if (y < (rightCorner-x)) {
+                                Toast.makeText(context, "Zona 1", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                Toast.makeText(context, "Zona 2", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        else {
+                            if (y > (rightCorner-x)) {
+                                Toast.makeText(context, "Zona 3", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                Toast.makeText(context, "Zona 4", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        break;
+                    default:
+                        break;
                 }
-                else {
-                    if (y > (rightCorner-x)) {
-                        Toast.makeText(context, "Zona 3", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        Toast.makeText(context, "Zona 4", Toast.LENGTH_SHORT).show();
-                    }
-                }
+
                 return true;
             }
         });
