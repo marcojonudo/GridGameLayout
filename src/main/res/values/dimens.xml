@@ -5,4 +5,6 @@
 
     <dimen name="cell_side">100dp</dimen>
     <dimen name="cell_margin">2dp</dimen>
+    <dimen name="movement_cell_side">40dp</dimen>
+    <dimen name="movement_cell_margin">1dp</dimen>
 </resources>
