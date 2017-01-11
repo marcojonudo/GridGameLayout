@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void insertZowi() {
-        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.game_grid_3x3);
+        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.game_grid_3x3);
 
         ImageView zowiImage = new ImageView(this);
         zowiImage.setImageResource(R.drawable.zowi_pointer);
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        linearLayout.addView(zowiImage);
+        relativeLayout.addView(zowiImage);
     }
 
     public void moveZowi(View v) {
