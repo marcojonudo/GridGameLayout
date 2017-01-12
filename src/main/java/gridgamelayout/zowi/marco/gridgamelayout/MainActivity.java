@@ -10,6 +10,9 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.RotateAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -95,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void insertZowi() {
-        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.game_grid_3x3);
+        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.content);
 
         ImageView zowiImage = new ImageView(this);
         zowiImage.setImageResource(R.drawable.zowi_pointer);
@@ -107,11 +110,35 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                TranslateAnimation animation = new TranslateAnimation(0, coordinates[8][0]-coordinates[7][0], 0, 0);
-                animation.setDuration(1000);
-                animation.setFillAfter(true);
+                AnimationSet set = new AnimationSet(true);
 
-                v.startAnimation(animation);
+                TranslateAnimation translateAnimation = new TranslateAnimation(0, 0, 0, coordinates[7][0]-coordinates[8][0]);
+                translateAnimation.setDuration(1000);
+                set.addAnimation(translateAnimation);
+
+                RotateAnimation rotateAnimation = new RotateAnimation(0, 90, coordinates[4][0]+v.getWidth()/2, coordinates[4][1]+v.getHeight()/2);
+                rotateAnimation.setDuration(1000);
+                rotateAnimation.setStartOffset(1000);
+                set.addAnimation(rotateAnimation);
+
+                translateAnimation = new TranslateAnimation(0, coordinates[8][0]-coordinates[7][0], 0, 0);
+                translateAnimation.setDuration(1000);
+                translateAnimation.setStartOffset(2000);
+                set.addAnimation(translateAnimation);
+
+                rotateAnimation = new RotateAnimation(0, -90, coordinates[5][0]+v.getWidth()/2, coordinates[5][1]+v.getHeight()/2);
+                rotateAnimation.setDuration(1000);
+                rotateAnimation.setStartOffset(3000);
+                set.addAnimation(rotateAnimation);
+
+                translateAnimation = new TranslateAnimation(0, 0, 0, coordinates[7][0]-coordinates[8][0]);
+                translateAnimation.setDuration(1000);
+                translateAnimation.setStartOffset(4000);
+                set.addAnimation(translateAnimation);
+
+                set.setFillAfter(true);
+
+                v.startAnimation(set);
             }
         });
 
