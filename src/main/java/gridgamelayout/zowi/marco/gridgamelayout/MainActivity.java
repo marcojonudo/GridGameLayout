@@ -24,4 +24,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void toTeeth(View v) {
+        Intent intent = new Intent(this, Teeth.class);
+        startActivity(intent);
+    }
+
 }

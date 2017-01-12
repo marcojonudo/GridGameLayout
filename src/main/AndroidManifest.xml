@@ -19,12 +19,13 @@
         </activity>
         <activity
             android:name=".Grid3x3"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".BeforeAfter"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Teeth"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
