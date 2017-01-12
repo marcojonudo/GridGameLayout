@@ -20,9 +20,11 @@
         <activity
             android:name=".Grid3x3"
             android:theme="@style/AppTheme.NoActionBar">
-            >
         </activity>
-        <activity android:name=".BeforeAfter"></activity>
+        <activity
+            android:name=".BeforeAfter"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

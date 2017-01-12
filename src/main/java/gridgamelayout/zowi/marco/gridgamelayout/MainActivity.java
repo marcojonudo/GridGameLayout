@@ -19,4 +19,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void toBeforeAfter(View v) {
+        Intent intent = new Intent(this, BeforeAfter.class);
+        startActivity(intent);
+    }
+
 }
